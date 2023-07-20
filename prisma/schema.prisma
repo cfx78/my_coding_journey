@@ -17,7 +17,6 @@ enum Technologies {
   REACT
   TYPESCRIPT
   TAILWIND
-
 }
 
 enum Stack {
@@ -39,25 +38,20 @@ enum Category {
   PROJECT
 }
 
-type Image {
-
-  url       String
-  createdAt DateTime @default(now())
-
+type Image{
+  url String
 }
 
-
-
 model Post {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
-  description String
-  content   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String         @id @default(auto()) @map("_id") @db.ObjectId
+  title        String
+  description  String
+  content      String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
   technologies Technologies[]
-  stack Stack?
-  project Project?
-  image Image?
-
+  stack        Stack?
+  project      Project?
+  image        Image?
+  category     Category?
 }
