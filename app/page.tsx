@@ -20,22 +20,18 @@ const Home = async () => {
 	console.log(blogs);
 	return (
 		<div>
-			<h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight md:text-5xl pt-6 text-center underline '>
-				My Coding Journey{' '}
-			</h1>
-
 			{blogs.map((blog) => (
 				<div key={blog.id} className='py-14'>
-					<Card className='border-4 border-stone-700'>
-						<CardHeader>
+					<Card className='border'>
+						<CardHeader className='text-center'>
 							<CardTitle className='text-4xl md:text-7xl'>
 								{blog.title}
 							</CardTitle>
 							<CardDescription className='text-xl md:text-3xl'>
-								{blog.description}
+								{blog.createdAt.toDateString()}
 							</CardDescription>
 						</CardHeader>
-						<CardContent className='text-sm flex flex-col items-center align-center'>
+						<CardContent className='text-sm flex flex-col  items-center align-center'>
 							<div className='w-5/6 pb-4 md:pb-0 h-full mx-auto md:pl-20'>
 								<AspectRatio ratio={16 / 9}>
 									<Image
@@ -48,20 +44,15 @@ const Home = async () => {
 								</AspectRatio>
 							</div>
 							<div className='text-center max-w-lg h-full md:text-2xl'>
-								<p>
-									Publish Date:{' '}
-									{blog.createdAt.toDateString()}
-								</p>
-								<p>
-									Technologies: {blog.technologies.join(', ')}
-								</p>
-								<p>Stack: {blog.stack}</p>
-								<p>Project: {blog.project}</p>
-								<p>Category: {blog.category}</p>
+								<p>{blog.description}</p>
 							</div>
 						</CardContent>
 						<CardFooter>
-							<Link href={`/${blog.id}`}>Read More</Link>
+							<Link
+								className='text-center w-full'
+								href={`/${blog.id}`}>
+								Read More
+							</Link>
 						</CardFooter>
 					</Card>
 				</div>

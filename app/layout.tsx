@@ -20,7 +20,12 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang='en'>
-			<body className={`${space_mono.variable}`}>{children}</body>
+			<body className={`${space_mono.variable}`}>
+				<h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight md:text-5xl pt-6 text-center underline '>
+					My Coding Journey{' '}
+				</h1>
+				{children}
+			</body>
 		</html>
 	);
 }
