@@ -9,12 +9,13 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
+import Link from 'next/link';
 
 const getBlogs = async () => {
 	const blogs = await prisma.post.findMany({});
 	return blogs;
 };
-const page = async () => {
+const Home = async () => {
 	const blogs = await getBlogs();
 	console.log(blogs);
 	return (
@@ -60,7 +61,7 @@ const page = async () => {
 							</div>
 						</CardContent>
 						<CardFooter>
-							<p>Read More</p>
+							<Link href={`/${blog.id}`}>Read More</Link>
 						</CardFooter>
 					</Card>
 				</div>
@@ -69,4 +70,4 @@ const page = async () => {
 	);
 };
 
-export default page;
+export default Home;
