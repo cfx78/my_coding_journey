@@ -2,6 +2,8 @@ import { prisma } from '@/prisma';
 import Image from 'next/image';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Link from 'next/link';
+import { badgeVariants } from '@/components/ui/badge';
+
 type Params = {
 	params: {
 		id: string;
@@ -27,14 +29,31 @@ const blog = async ({ params }: Params) => {
 				<p>{blog?.content}</p>
 			</div>
 			<div>
-				<p className='font-bold'>Technologies:</p>{' '}
-				<p> {blog?.technologies.join(', ')}</p>
+				<p className='font-bold '>Technologies:</p>{' '}
+				{blog?.technologies?.map((tech) => {
+					return (
+						<Link
+							key={tech}
+							href=''
+							className={badgeVariants({ variant: 'outline' })}>
+							{tech}
+						</Link>
+					);
+				})}
 				<p className='font-bold'>Stack:</p>
-				<p>{blog?.stack}</p>
+				<Link href='' className={badgeVariants({ variant: 'outline' })}>
+					{blog?.stack}
+				</Link>
 				<p className='font-bold'>Project:</p>
-				<p>{blog?.project}</p>
+				<Link href='' className={badgeVariants({ variant: 'outline' })}>
+					{blog?.project}
+				</Link>
 				<p className='font-bold'>Category:</p>
-				<p>{blog?.category}</p>
+				<Link
+					href={`tags/categories/${blog?.category}`}
+					className={badgeVariants({ variant: 'outline' })}>
+					{blog?.category}
+				</Link>
 			</div>
 			<div className='w-full text-center pt-6'>
 				<Link href='/'>Back Home</Link>
