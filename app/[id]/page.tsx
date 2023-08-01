@@ -34,18 +34,22 @@ const blog = async ({ params }: Params) => {
 					return (
 						<Link
 							key={tech}
-							href=''
+							href={`tags/technologies/${tech}`}
 							className={badgeVariants({ variant: 'outline' })}>
 							{tech}
 						</Link>
 					);
 				})}
 				<p className='font-bold'>Stack:</p>
-				<Link href='' className={badgeVariants({ variant: 'outline' })}>
+				<Link
+					href={`tags/stacks/${blog?.stack}`}
+					className={badgeVariants({ variant: 'outline' })}>
 					{blog?.stack}
 				</Link>
 				<p className='font-bold'>Project:</p>
-				<Link href='' className={badgeVariants({ variant: 'outline' })}>
+				<Link
+					href={`tags/projects/${blog?.project}`}
+					className={badgeVariants({ variant: 'outline' })}>
 					{blog?.project}
 				</Link>
 				<p className='font-bold'>Category:</p>

@@ -12,7 +12,9 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Link from 'next/link';
 
 const getBlogs = async () => {
-	const blogs = await prisma.post.findMany({});
+	const blogs = await prisma.post.findMany({
+		orderBy: { createdAt: 'desc' },
+	});
 	return blogs;
 };
 const Home = async () => {

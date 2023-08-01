@@ -10,23 +10,23 @@ import {
 } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Link from 'next/link';
-import { Category } from '@prisma/client';
+import { Project } from '@prisma/client';
 
 type Params = {
 	params: {
-		category: Category;
+		project: Project;
 	};
 };
 
-const CategoryPage = async ({ params }: Params) => {
+const ProjectPage = async ({ params }: Params) => {
 	const blogs = await prisma.post.findMany({
-		where: { category: params.category },
+		where: { project: params.project },
 		orderBy: { createdAt: 'desc' },
 	});
 
 	return (
 		<div>
-			<h2 className='text-center pt-8 text-3xl'>"{params.category}"</h2>
+			<h2 className='text-center pt-8 text-3xl'>"{params.project}"</h2>
 			{blogs.map((blog) => (
 				<div key={blog.id} className='py-14'>
 					<Card className='border'>
@@ -68,4 +68,4 @@ const CategoryPage = async ({ params }: Params) => {
 	);
 };
 
-export default CategoryPage;
+export default ProjectPage;
