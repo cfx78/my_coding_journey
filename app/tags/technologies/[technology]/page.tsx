@@ -18,6 +18,22 @@ type Params = {
 	};
 };
 
+export async function generateStaticParams() {
+	const technologies = await [
+		Technologies.MONGODB,
+		Technologies.NEXT,
+		Technologies.PRISMA,
+		Technologies.REACT,
+		Technologies.TYPESCRIPT,
+	];
+
+	return technologies.map((tech) => {
+		return {
+			technology: tech,
+		};
+	});
+}
+
 const TechnologiesPage = async ({ params }: Params) => {
 	const blogs = await prisma.post.findMany({
 		where: {
@@ -30,7 +46,7 @@ const TechnologiesPage = async ({ params }: Params) => {
 
 	return (
 		<div>
-			<h2 className='text-center pt-8 text-3xl'>"{params.technology}"</h2>
+			<h2 className='text-center pt-8 text-3xl'>{`${params.technology}`}</h2>
 			{blogs.map((blog) => (
 				<div key={blog.id} className='py-14'>
 					<Card className='border'>

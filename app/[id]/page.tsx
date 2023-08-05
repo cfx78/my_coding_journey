@@ -10,6 +10,20 @@ type Params = {
 	};
 };
 
+export async function generateStaticParams() {
+	const blogs = await prisma.post.findMany({
+		select: {
+			id: true,
+		},
+	});
+
+	return blogs.map((blog) => {
+		return {
+			id: blog.id,
+		};
+	});
+}
+
 const blog = async ({ params }: Params) => {
 	const blog = await prisma.post.findUnique({ where: { id: params.id } });
 

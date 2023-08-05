@@ -18,6 +18,20 @@ type Params = {
 	};
 };
 
+export async function generateStaticParams() {
+	const blogs = await prisma.post.findMany({
+		select: {
+			project: true,
+		},
+	});
+
+	return blogs.map((blog) => {
+		return {
+			project: blog.project,
+		};
+	});
+}
+
 const ProjectPage = async ({ params }: Params) => {
 	const blogs = await prisma.post.findMany({
 		where: { project: params.project },
@@ -26,7 +40,7 @@ const ProjectPage = async ({ params }: Params) => {
 
 	return (
 		<div>
-			<h2 className='text-center pt-8 text-3xl'>"{params.project}"</h2>
+			<h2 className='text-center pt-8 text-3xl'>{`${params.project}`}</h2>
 			{blogs.map((blog) => (
 				<div key={blog.id} className='py-14'>
 					<Card className='border'>

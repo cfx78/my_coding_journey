@@ -18,6 +18,20 @@ type Params = {
 	};
 };
 
+export async function generateStaticParams() {
+	const blogs = await prisma.post.findMany({
+		select: {
+			category: true,
+		},
+	});
+
+	return blogs.map((blog) => {
+		return {
+			category: blog.category,
+		};
+	});
+}
+
 const CategoryPage = async ({ params }: Params) => {
 	const blogs = await prisma.post.findMany({
 		where: { category: params.category },
@@ -26,7 +40,7 @@ const CategoryPage = async ({ params }: Params) => {
 
 	return (
 		<div>
-			<h2 className='text-center pt-8 text-3xl'>"{params.category}"</h2>
+			<h2 className='text-center pt-8 text-3xl'>{`${params.category}`}</h2>
 			{blogs.map((blog) => (
 				<div key={blog.id} className='py-14'>
 					<Card className='border'>
