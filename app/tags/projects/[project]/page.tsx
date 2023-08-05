@@ -40,7 +40,7 @@ const ProjectPage = async ({ params }: Params) => {
 
 	return (
 		<div>
-			<h2 className='text-center pt-8 text-3xl'>{`${params.project}`}</h2>
+			<h2 className='text-center pt-8 text-3xl'>{`"${params.project}"`}</h2>
 			{blogs.map((blog) => (
 				<div key={blog.id} className='py-14'>
 					<Card className='border'>

@@ -1,6 +1,8 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
+import { ThemeProvider } from '@/components/theme-provider';
+import { ModeToggle } from '@/components/ui/dark-toggle';
 
 const space_mono = Space_Mono({
 	subsets: ['latin'],
@@ -23,10 +25,16 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body className={`${space_mono.variable}`}>
-				<h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight md:text-5xl pt-6 text-center underline '>
-					My Coding Journey{' '}
-				</h1>
-				{children}
+				<ThemeProvider
+					attribute='class'
+					defaultTheme='system'
+					enableSystem>
+					<h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight md:text-5xl pt-6 text-center underline pb-4 '>
+						My Coding Journey{' '}
+					</h1>
+					<ModeToggle />
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	);
