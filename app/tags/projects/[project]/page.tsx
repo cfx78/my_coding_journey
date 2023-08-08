@@ -8,7 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { projects } from '@/lib/arrays';
 import Link from 'next/link';
 import { Project } from '@prisma/client';
 
@@ -19,15 +19,11 @@ type Params = {
 };
 
 export async function generateStaticParams() {
-	const blogs = await prisma.post.findMany({
-		select: {
-			project: true,
-		},
-	});
+	const blogs = await projects;
 
-	return blogs.map((blog) => {
+	return blogs.map((project) => {
 		return {
-			project: blog.project,
+			project: project,
 		};
 	});
 }

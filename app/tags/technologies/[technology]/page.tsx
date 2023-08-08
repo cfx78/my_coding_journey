@@ -8,7 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { technologies } from '@/lib/arrays';
 import Link from 'next/link';
 import { Technologies } from '@prisma/client';
 
@@ -19,15 +19,9 @@ type Params = {
 };
 
 export async function generateStaticParams() {
-	const technologies = await [
-		Technologies.MONGODB,
-		Technologies.NEXT,
-		Technologies.PRISMA,
-		Technologies.REACT,
-		Technologies.TYPESCRIPT,
-	];
+	const blogs = await technologies;
 
-	return technologies.map((tech) => {
+	return blogs.map((tech) => {
 		return {
 			technology: tech,
 		};

@@ -8,7 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { categories } from '@/lib/arrays';
 import Link from 'next/link';
 import { Category } from '@prisma/client';
 
@@ -19,7 +19,7 @@ type Params = {
 };
 
 export async function generateStaticParams() {
-	const blogs = await [Category.PERSONAL, Category.PROJECT];
+	const blogs = await categories;
 
 	return blogs.map((category) => {
 		return {

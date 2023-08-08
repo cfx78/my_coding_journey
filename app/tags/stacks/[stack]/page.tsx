@@ -8,7 +8,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+import { stacks } from '@/lib/arrays';
 import Link from 'next/link';
 import { Stack } from '@prisma/client';
 
@@ -19,15 +19,11 @@ type Params = {
 };
 
 export async function generateStaticParams() {
-	const blogs = await prisma.post.findMany({
-		select: {
-			stack: true,
-		},
-	});
+	const blogs = await stacks;
 
-	return blogs.map((blog) => {
+	return blogs.map((stack) => {
 		return {
-			stack: blog.stack,
+			stack: stack,
 		};
 	});
 }
