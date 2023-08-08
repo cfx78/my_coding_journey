@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { Space_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { ModeToggle } from '@/components/ui/dark-toggle';
+import MobileNavbar from '@/components/MobileNavbar';
+import MainNavbar from '@/components/MainNavbar';
 
 const space_mono = Space_Mono({
 	subsets: ['latin'],
@@ -29,10 +31,20 @@ export default function RootLayout({
 					attribute='class'
 					defaultTheme='system'
 					enableSystem>
+					<div className='hidden sm:flex w-full'>
+						<MainNavbar />
+					</div>
+					<div className='flex sm:hidden w-full'>
+						<MobileNavbar />
+					</div>
+
 					<h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight md:text-5xl pt-6 text-center underline pb-4 '>
 						My Coding Journey{' '}
 					</h1>
-					<ModeToggle />
+					<div className=' sm:hidden w-full flex justify-center items-center'>
+						<ModeToggle />
+					</div>
+
 					{children}
 				</ThemeProvider>
 			</body>
