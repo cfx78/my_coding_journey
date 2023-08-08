@@ -19,15 +19,11 @@ type Params = {
 };
 
 export async function generateStaticParams() {
-	const blogs = await prisma.post.findMany({
-		select: {
-			category: true,
-		},
-	});
+	const blogs = await [Category.PERSONAL, Category.PROJECT];
 
-	return blogs.map((blog) => {
+	return blogs.map((category) => {
 		return {
-			category: blog.category,
+			category: category,
 		};
 	});
 }
