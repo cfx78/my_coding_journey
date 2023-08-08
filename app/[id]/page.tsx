@@ -1,6 +1,5 @@
 import { prisma } from '@/prisma';
 import Image from 'next/image';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
 import Link from 'next/link';
 import { badgeVariants } from '@/components/ui/badge';
 
@@ -28,18 +27,18 @@ const blog = async ({ params }: Params) => {
 	const blog = await prisma.post.findUnique({ where: { id: params.id } });
 
 	return (
-		<div className='pt-10'>
+		<div className='pt-10 mx-auto max-w-3xl'>
 			<p className='text-4xl text-center pb-4'>{blog?.title}</p>
-			<AspectRatio ratio={16 / 9}>
+			<div className='flex items-center justify-center'>
 				<Image
 					width={500}
 					height={500}
 					src={`${blog?.image?.url}`}
 					alt='blog image'
-					className='rounded-md object-cover'
+					className='rounded-md object-fill '
 				/>
-			</AspectRatio>
-			<div className='py-10 text-2xl px-5'>
+			</div>
+			<div className='py-10 text-2xl px-5 leading-loose tracking-wide'>
 				<p>{blog?.content}</p>
 			</div>
 			<div>

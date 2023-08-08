@@ -8,25 +8,75 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { AspectRatio } from '@/components/ui/aspect-ratio';
+
 import Link from 'next/link';
+
+const getFirstBlog = async () => {
+	const blog = await prisma.post.findUnique({
+		where: { id: '64d29ab9dc08e5940f386f61' },
+	});
+
+	return blog;
+};
 
 const getBlogs = async () => {
 	const blogs = await prisma.post.findMany({
 		orderBy: { createdAt: 'desc' },
+		where: {
+			id: {
+				not: '64d29ab9dc08e5940f386f61',
+			},
+		},
 	});
 	return blogs;
 };
 const Home = async () => {
 	const blogs = await getBlogs();
-	console.log(blogs);
+	const firstBlog = await getFirstBlog();
+
 	return (
 		<div>
+			<div className='py-14 flex justify-center items-center'>
+				<Card className='border'>
+					<CardHeader className='text-center'>
+						<CardTitle className='text-4xl md:text-5xl'>
+							{firstBlog?.title}
+						</CardTitle>
+						<CardDescription className='text-xl md:text-3xl'>
+							{firstBlog?.createdAt.toDateString()}
+						</CardDescription>
+					</CardHeader>
+					<CardContent className='text-sm flex flex-col  items-center align-center'>
+						<div className='w-5/6 pb-6  h-full mx-auto '>
+							<Image
+								width={500}
+								height={500}
+								src={`${firstBlog?.image?.url}`}
+								alt='blog image'
+								className='rounded-md object-cover mx-auto'
+							/>
+						</div>
+						<div className='text-center max-w-lg h-full md:text-lg'>
+							<p>{firstBlog?.description}</p>
+						</div>
+					</CardContent>
+					<CardFooter>
+						<Link
+							className='text-center w-full'
+							href={`/${firstBlog?.id}`}>
+							Read More
+						</Link>
+					</CardFooter>
+				</Card>
+			</div>
+
 			{blogs.map((blog) => (
-				<div key={blog.id} className='py-14'>
+				<div
+					key={blog.id}
+					className='py-14 flex justify-center items-center'>
 					<Card className='border'>
 						<CardHeader className='text-center'>
-							<CardTitle className='text-4xl md:text-7xl'>
+							<CardTitle className='text-4xl md:text-5xl'>
 								{blog.title}
 							</CardTitle>
 							<CardDescription className='text-xl md:text-3xl'>
@@ -34,18 +84,16 @@ const Home = async () => {
 							</CardDescription>
 						</CardHeader>
 						<CardContent className='text-sm flex flex-col  items-center align-center'>
-							<div className='w-5/6 pb-4 md:pb-0 h-full mx-auto md:pl-20'>
-								<AspectRatio ratio={16 / 9}>
-									<Image
-										width={500}
-										height={500}
-										src={`${blog.image?.url}`}
-										alt='blog image'
-										className='rounded-md object-cover'
-									/>
-								</AspectRatio>
+							<div className='w-5/6 pb-6  h-full mx-auto '>
+								<Image
+									width={500}
+									height={500}
+									src={`${blog.image?.url}`}
+									alt='blog image'
+									className='rounded-md object-cover mx-auto'
+								/>
 							</div>
-							<div className='text-center max-w-lg h-full md:text-2xl'>
+							<div className='text-center max-w-lg h-full md:text-lg'>
 								<p>{blog.description}</p>
 							</div>
 						</CardContent>

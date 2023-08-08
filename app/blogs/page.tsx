@@ -28,7 +28,7 @@ export default function Home() {
 
 		console.log(blog);
 
-		fetch('http://localhost:3000/api/submitForm', {
+		fetch('/api/submitForm', {
 			method: 'POST',
 
 			body: JSON.stringify(blog),
@@ -177,7 +177,7 @@ export default function Home() {
 				</form>
 				<p>title: {title}</p>
 				<p>description: {description}</p>
-				<p>content: {content}</p>
+				<p className='max-w-md'>content: {content}</p>
 				<p>technologies: {technologies.join(', ')}</p>
 				<p>stack: {stack}</p>
 				<p>project: {project}</p>

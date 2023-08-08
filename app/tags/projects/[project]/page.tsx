@@ -42,10 +42,12 @@ const ProjectPage = async ({ params }: Params) => {
 		<div>
 			<h2 className='text-center pt-8 text-3xl'>{`"${params.project}"`}</h2>
 			{blogs.map((blog) => (
-				<div key={blog.id} className='py-14'>
+				<div
+					key={blog.id}
+					className='py-14 flex justify-center items-center'>
 					<Card className='border'>
 						<CardHeader className='text-center'>
-							<CardTitle className='text-4xl md:text-7xl'>
+							<CardTitle className='text-4xl md:text-5xl'>
 								{blog.title}
 							</CardTitle>
 							<CardDescription className='text-xl md:text-3xl'>
@@ -53,18 +55,16 @@ const ProjectPage = async ({ params }: Params) => {
 							</CardDescription>
 						</CardHeader>
 						<CardContent className='text-sm flex flex-col  items-center align-center'>
-							<div className='w-5/6 pb-4 md:pb-0 h-full mx-auto md:pl-20'>
-								<AspectRatio ratio={16 / 9}>
-									<Image
-										width={500}
-										height={500}
-										src={`${blog.image?.url}`}
-										alt='blog image'
-										className='rounded-md object-cover'
-									/>
-								</AspectRatio>
+							<div className='w-5/6 pb-6  h-full mx-auto '>
+								<Image
+									width={500}
+									height={500}
+									src={`${blog.image?.url}`}
+									alt='blog image'
+									className='rounded-md object-cover mx-auto'
+								/>
 							</div>
-							<div className='text-center max-w-lg h-full md:text-2xl'>
+							<div className='text-center max-w-lg h-full md:text-lg'>
 								<p>{blog.description}</p>
 							</div>
 						</CardContent>
