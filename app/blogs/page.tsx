@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 export default function Home() {
 	const [title, setTitle] = useState('');
@@ -140,6 +141,9 @@ export default function Home() {
 									Social Media
 								</option>
 								<option value='PORTFOLIO'>Portfolio</option>
+								<option value='MUSICSTUDIO'>
+									Music Studio
+								</option>
 							</select>
 						</label>
 					</div>
@@ -177,7 +181,9 @@ export default function Home() {
 				</form>
 				<p>title: {title}</p>
 				<p>description: {description}</p>
-				<p className='max-w-md'>content: {content}</p>
+				<p className='max-w-md'>
+					content:<ReactMarkdown>{content}</ReactMarkdown>
+				</p>
 				<p>technologies: {technologies.join(', ')}</p>
 				<p>stack: {stack}</p>
 				<p>project: {project}</p>

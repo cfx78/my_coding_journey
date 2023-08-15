@@ -2,6 +2,7 @@ import { prisma } from '@/prisma';
 import Image from 'next/image';
 import Link from 'next/link';
 import { badgeVariants } from '@/components/ui/badge';
+import ReactMarkdown from 'react-markdown';
 
 type Params = {
 	params: {
@@ -39,7 +40,9 @@ const blog = async ({ params }: Params) => {
 				/>
 			</div>
 			<div className='py-10 text-2xl px-5 leading-loose tracking-wide'>
-				<p>{blog?.content}</p>
+				<p>
+					<ReactMarkdown children={blog?.content as string} />
+				</p>
 			</div>
 			<div>
 				<p className='font-bold '>Technologies:</p>{' '}

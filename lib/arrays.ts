@@ -19,4 +19,5 @@ export const projects: Project[] = [
 	Project.ECOMMERCE,
 	Project.PORTFOLIO,
 	Project.SOCIALMEDIA,
+	Project.MUSICSTUDIO,
 ];
