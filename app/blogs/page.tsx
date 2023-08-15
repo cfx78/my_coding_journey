@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
 
 export default function Home() {
 	const [title, setTitle] = useState('');
@@ -181,9 +180,10 @@ export default function Home() {
 				</form>
 				<p>title: {title}</p>
 				<p>description: {description}</p>
-				<p className='max-w-md'>
-					content:<ReactMarkdown>{content}</ReactMarkdown>
-				</p>
+				<article className='max-w-md prose'>
+					content:
+					{content}
+				</article>
 				<p>technologies: {technologies.join(', ')}</p>
 				<p>stack: {stack}</p>
 				<p>project: {project}</p>
