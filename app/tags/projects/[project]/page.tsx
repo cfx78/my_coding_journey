@@ -43,7 +43,7 @@ const ProjectPage = async ({ params }: Params) => {
 					className='py-14 flex justify-center items-center'>
 					<Card className='border'>
 						<CardHeader className='text-center'>
-							<CardTitle className='text-4xl md:text-5xl'>
+							<CardTitle className='text-4xl md:text-5xl max-w-lg'>
 								{blog.title}
 							</CardTitle>
 							<CardDescription className='text-xl md:text-3xl'>
@@ -57,7 +57,7 @@ const ProjectPage = async ({ params }: Params) => {
 									height={500}
 									src={`${blog.image?.url}`}
 									alt='blog image'
-									className='rounded-md object-cover mx-auto'
+									className='rounded-md object-cover max-h-80 mx-auto'
 								/>
 							</div>
 							<div className='text-center max-w-lg h-full md:text-lg'>
