@@ -7,6 +7,7 @@ export const technologies: Technologies[] = [
 	Technologies.REACT,
 	Technologies.TAILWIND,
 	Technologies.TYPESCRIPT,
+	Technologies.ASTRO,
 ];
 
 export const stacks: Stack[] = [Stack.FULLSTACK, Stack.FRONTEND, Stack.BACKEND];

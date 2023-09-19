@@ -105,6 +105,7 @@ export default function Home() {
 							<option value='REACT'>React</option>
 							<option value='TYPESCRIPT'>Typescript</option>
 							<option value='TAILWIND'>Tailwind</option>
+							<option value='ASTRO'>Astro</option>
 						</select>
 					</div>
 					<div>

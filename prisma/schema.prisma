@@ -17,6 +17,7 @@ enum Technologies {
   REACT
   TYPESCRIPT
   TAILWIND
+  ASTRO
 }
 
 enum Stack {
